@@ -1,4 +1,4 @@
-package repository;
+package org.factoriaf5.bftp2project4grupo1.repository;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -66,14 +66,14 @@ import java.util.Objects;
             this.year= year;
         }
 
-       /** @Override
+        @Override
         public boolean equals(Object o) {
             if (this == o) return true;
             if (o == null || getClass() != o.getClass()) return false;
-            Game game = (game) o;
+            Game game = (Game) o;
             return Objects.equals(id, game.id) && Objects.equals(title, game.title) && Objects.equals(platform, game.platform) && Objects.equals(year, game.year);
         }
-        **/
+
 
         @Override
         public int hashCode() {

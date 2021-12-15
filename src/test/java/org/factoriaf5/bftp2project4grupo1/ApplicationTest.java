@@ -5,8 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
-import repository.Game;
-import repository.GameRepository;
+import org.factoriaf5.bftp2project4grupo1.repository.Game;
+import org.factoriaf5.bftp2project4grupo1.repository.GameRepository;
 
 import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -34,9 +34,9 @@ class ApplicationTests {
 
         Game game = gameRepository.save(new Game("Wii Sports", "Wii", 2006));
 
-        mockMvc.perform(get("/"))
+        mockMvc.perform(get("/home"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("/all"))
+                .andExpect(view().name("/"))
                 .andExpect(model().attribute("games", hasItem(game)));
     }
 }
