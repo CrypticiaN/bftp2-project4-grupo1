@@ -25,6 +25,6 @@ public class GameController {
         List<Game> games = (List<Game>) gameRepository.findAll();
         model.addAttribute("title", "Game list");
         model.addAttribute("games", games);
-        return "/";
+        return "home";
     }
 }
