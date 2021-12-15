@@ -34,9 +34,9 @@ class ApplicationTests {
 
         Game game = gameRepository.save(new Game("Wii Sports", "Wii", 2006));
 
-        mockMvc.perform(get("/home"))
+        mockMvc.perform(get("/"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("/"))
+                .andExpect(view().name("home"))
                 .andExpect(model().attribute("games", hasItem(game)));
     }
 }
