@@ -23,7 +23,7 @@ public class GameController {
     @GetMapping("/")
     String listGames(Model model) {
         List<Game> games = (List<Game>) gameRepository.findAll();
-        model.addAttribute("title", "Game list");
+        model.addAttribute("title", "Game List");
         model.addAttribute("games", games);
         return "home";
     }
