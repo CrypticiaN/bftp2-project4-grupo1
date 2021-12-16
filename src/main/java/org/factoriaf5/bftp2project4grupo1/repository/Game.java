@@ -13,15 +13,18 @@ import java.util.Objects;
         private String title;
         private String platform;
         private int year;
+        private String imageUrl;
 
         public Game() {
 
         }
 
-        public Game(String title, String platform, int year) {
+        public Game(String title, String platform, int year, String imageUrl) {
+
             this.title = title;
             this.platform = platform;
-            this.year= year;
+            this.year = year;
+            this.imageUrl = imageUrl;
         }
 
         public Long getId() {
@@ -78,6 +81,14 @@ import java.util.Objects;
         @Override
         public int hashCode() {
             return Objects.hash(id, title, platform, year);
+        }
+
+        public String getImageUrl() {
+            return imageUrl;
+        }
+
+        public void setImageUrl(String imageUrl) {
+            this.imageUrl = imageUrl;
         }
     }
 

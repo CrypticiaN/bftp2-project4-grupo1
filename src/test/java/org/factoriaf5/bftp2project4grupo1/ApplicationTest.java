@@ -1,5 +1,6 @@
 package org.factoriaf5.bftp2project4grupo1;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -32,11 +33,15 @@ class ApplicationTests {
     @Test
     void returnsTheExistingGames() throws Exception {
 
-        Game game = gameRepository.save(new Game("Wii Sports", "Wii", 2006));
+        Game game = gameRepository.save(new Game("Wii Sports", "Wii", 2006, "https://static.wikia.nocookie.net/videojuego/images/9/98/WiiSport_BA-1-.jpg/revision/latest/top-crop/width/360/height/450?cb=20070629185312"));
 
         mockMvc.perform(get("/"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("home"))
                 .andExpect(model().attribute("games", hasItem(game)));
+    }
+    @BeforeEach
+    void setUp() {
+        gameRepository.deleteAll();
     }
 }
