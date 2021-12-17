@@ -27,4 +27,9 @@ public class GameController {
         model.addAttribute("games", games);
         return "home";
     }
+
+    @GetMapping("/add")
+    String getForm(Model model) {
+        return "add";
+    }
 }

@@ -44,4 +44,11 @@ class ApplicationTests {
     void setUp() {
         gameRepository.deleteAll();
     }
+
+    @Test
+    void returnsAFormToAddNewBooks() throws Exception {
+        mockMvc.perform(get("/add"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("/add"));
+    }
 }
