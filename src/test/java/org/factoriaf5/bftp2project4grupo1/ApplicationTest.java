@@ -54,8 +54,11 @@ class ApplicationTests {
     void returnsAFormToAddNewBooks() throws Exception {
         mockMvc.perform(get("/add"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("add"));
+                .andExpect(view().name("add"))
+                .andExpect(model().attributeExists("game"))
+                .andExpect(model().attribute("title", "Add a new game"));
     }
+
 
     @Test
     void allowsToCreateAGame() throws Exception {
@@ -77,4 +80,6 @@ class ApplicationTests {
                 hasProperty("imageUrl", equalTo("google.com"))
         )));
     }
+
+
 }

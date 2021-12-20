@@ -34,6 +34,7 @@ public class GameController {
     String getForm(Model model){
         Game game = new Game();
         model.addAttribute("game", game);
+        model.addAttribute("title", "Add a new game");
         return "add";
     }
 
