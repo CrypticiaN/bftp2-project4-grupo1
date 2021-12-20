@@ -8,6 +8,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.factoriaf5.bftp2project4grupo1.repository.Game;
 import org.factoriaf5.bftp2project4grupo1.repository.GameRepository;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -81,5 +84,14 @@ class ApplicationTests {
         )));
     }
 
+    @Test
+    void returnsAFormToEditBooks() throws Exception {
+        Game game = gameRepository.save(new Game("Harry Potter and the Philosopher's Stone", "J.K. Rowling", 2006, "www.google.es"));
+        mockMvc.perform(get("/games/add/" + game.getId()))
+                .andExpect(status().isOk())
+                .andExpect(view().name("/add"))
+                .andExpect(model().attribute("game", game))
+                .andExpect(model().attribute("title", "Edit game"));
+    }
 
 }

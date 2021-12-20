@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.factoriaf5.bftp2project4grupo1.repository.GameRepository;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 
@@ -42,5 +43,13 @@ public class GameController {
     String addGame(@ModelAttribute Game game) {
         gameRepository.save(game);
         return "redirect:/";
+    }
+
+    @GetMapping("/games/add/{id}")
+    String editBook(Model model, @PathVariable Long id){
+        Game game = gameRepository.findById(id).get();
+        model.addAttribute("game", game);
+        model.addAttribute("title", "Edit game");
+        return "/add";
     }
 }
