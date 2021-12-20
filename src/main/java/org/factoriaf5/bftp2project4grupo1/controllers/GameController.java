@@ -52,4 +52,10 @@ public class GameController {
         model.addAttribute("title", "Edit game");
         return "/add";
     }
+
+    @GetMapping("/games/delete/{id}")
+    String deleteGame(@PathVariable Long id){
+        gameRepository.deleteById(id);
+        return "redirect:/";
+    }
 }

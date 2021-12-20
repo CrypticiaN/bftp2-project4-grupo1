@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.hamcrest.CoreMatchers.allOf;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -94,4 +95,13 @@ class ApplicationTests {
                 .andExpect(model().attribute("title", "Edit game"));
     }
 
+    @Test
+    void allowsToDeleteAGame() throws Exception {
+        Game game = gameRepository.save(new Game("Harry Potter and the Philosopher's Stone", "J.K. Rowling", 2006, "www.google.es"));
+        mockMvc.perform(get("/games/delete/" + game.getId()))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/"));
+
+        assertThat(gameRepository.findById(game.getId()), equalTo(Optional.empty()));
+    }
 }
