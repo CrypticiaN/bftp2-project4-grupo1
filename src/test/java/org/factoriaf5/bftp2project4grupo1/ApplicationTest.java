@@ -9,8 +9,13 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.factoriaf5.bftp2project4grupo1.repository.Game;
 import org.factoriaf5.bftp2project4grupo1.repository.GameRepository;
 
-import static org.hamcrest.Matchers.hasItem;
+import java.util.List;
+
+import static org.hamcrest.CoreMatchers.allOf;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
@@ -50,5 +55,26 @@ class ApplicationTests {
         mockMvc.perform(get("/add"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("add"));
+    }
+
+    @Test
+    void allowsToCreateAGame() throws Exception {
+        mockMvc.perform(post("/games/add")
+                        .param("title", "Harry Potter and the Philosopher's Stone")
+                        .param("platform", "J.K. Rowling")
+                        .param("year", "2006")
+                        .param("imageUrl", "google.com")
+                )
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/"))
+        ;
+
+        List<Game> existingGames = (List<Game>) gameRepository.findAll();
+        assertThat(existingGames, contains(allOf(
+                hasProperty("title", equalTo("Harry Potter and the Philosopher's Stone")),
+                hasProperty("platform", equalTo("J.K. Rowling")),
+                hasProperty("year", equalTo(2006)),
+                hasProperty("imageUrl", equalTo("google.com"))
+        )));
     }
 }

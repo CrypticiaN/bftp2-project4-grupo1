@@ -6,6 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.factoriaf5.bftp2project4grupo1.repository.GameRepository;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 
 import java.util.List;
@@ -29,7 +31,15 @@ public class GameController {
     }
 
     @GetMapping("/add")
-    String getForm(Model model) {
+    String getForm(Model model){
+        Game game = new Game();
+        model.addAttribute("game", game);
         return "add";
+    }
+
+    @PostMapping("/games/add")
+    String addGame(@ModelAttribute Game game) {
+        gameRepository.save(game);
+        return "redirect:/";
     }
 }
