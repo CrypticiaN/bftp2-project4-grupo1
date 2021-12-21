@@ -6,37 +6,29 @@
 </head>
 <body>
 <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
+    <nav class="flex items-center justify-between flex-wrap bg-neutral-900 p-6">
+        <div class="flex items-center flex-shrink-0 text-white mr-6">
             <a href="#" class="imagen_logo">
-                <img class="logo" src="static.assets/legacy-games.png" style="width:5rem; height: 5rem;"th:src="@{assets/legacy-games.png}">
+                <img class="logo" src="static.assets/legacy-games.png" style="width:5rem; height: 5rem;" th:src="@{assets/legacy-games.png}">
             </a>
-            <a class="navbar-brand" href="/">Legacy Games</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+            <span class="font-semibold ml-4 text-xl text-teal-200 border-teal-400 tracking-tight">Legacy Games</span>
+        </div>
+        <div class="block lg:hidden">
+            <button class="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white">
+                <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
             </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/add">Add</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="/games">Filter</a>
-                    </li>
-                    <!--<li class="nav-item dropdown">
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </li>-->
+        </div>
+        <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+            <div class="text-sm lg:flex-grow">
+                <a class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4" href="/add">Add</a>
+                <a class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4" href="/games">Filter</a>
 
-                </ul>
-                <form class="d-flex">
+            </div>
+            <div>
+                <button type="submit">
+                    <a href="#" class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">Login</a>
+                </button>
 
-                    <button class="btn btn-outline-success" type="submit">LogIn</button>
-                </form>
             </div>
         </div>
     </nav>
