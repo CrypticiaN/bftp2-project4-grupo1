@@ -3,40 +3,67 @@
 
 <head th:replace="fragments/head"></head>
 <body>
-
 <header th:replace="fragments/header"></header>
 <section class="container">
-    <h1 th:text="${title}"></h1>
-    <form th:action="@{/games/add}" th:object="${game}" method="post">
-        <div class="form-group">
-            <input type="hidden" th:field="*{id}">
-            <label class="col-md2" for="title">Title</label>
-            <input th:field="*{title}" type="text" class="col-md6 form-control form-control-sm" id="title"
-                   placeholder="Enter title">
-        </div>
-        <div class="form-group">
-            <label class="col-md2" for="platform">Platform</label>
-            <input th:field="*{platform}" type="text" class="col-md6 form-control form-control-sm" id="platform"
-                   placeholder="Enter platform">
-        </div>
-        <div class="form-group">
-            <label class="col-md2" for="year">Year</label>
-            <input th:field="*{year}" type="text" class="col-md6 form-control form-control-sm" id="year"
-                   placeholder="Enter year">
-        </div>
-        <div class="form-group">
-            <label class="col-md2" for="year">Image</label>
-            <input th:field="*{imageUrl}" type="text" class="col-md6 form-control form-control-sm" id="imageUrl"
-                   placeholder="Enter image">
-        </div>
-        <div class="card-footer ">
-            <input type="submit" class="btn btn-primary btn-sm" value="Save"/>
-        </div>
-    </form>
+    <h1 class="font-semibold ml-4 text-xl text-neutral-900 border-neutral-900 tracking-tight" th:text="${title}"></h1>
+    <div class="w-full  max-w-xl">
+        <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" th:action="@{/games/add}" th:object="${game}" method="post">
+            <div class="mb-4">
+                <input type="hidden" th:field="*{id}">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="title">
+                    Title
+                </label>
+                <input th:field="*{title}" type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="title"
+                       placeholder="Enter title">
+            </div>
+            <div class="mb-4">
+                <div class="inline-block relative w-full">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="platform">
+                    Platform
+                </label>
+                <select th:field="*{platform}" id="platform" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                    <option th:value="${game.platform}">Wii</option>
+                    <option th:value="${game.platform}">X360</option>
+                    <option th:value="${game.platform}">PS3</option>
+                    <option th:value="${game.platform}">GB</option>
+                    <option th:value="${game.platform}">DS</option>
+                    <option th:value="${game.platform}">SNES</option>
+                    <option th:value="${game.platform}">NES</option>
+                    <option th:value="${game.platform}">GBA</option>
+                    <option th:value="${game.platform}">3DS</option>
+                    <option th:value="${game.platform}">N64</option>
+                    <option th:value="${game.platform}">PS</option>
+                    <option th:value="${game.platform}">XB</option>
+                    <option th:value="${game.platform}">PC</option>
+                    <option th:value="${game.platform}">PSP</option>
+                    <option th:value="${game.platform}">2600</option>
+                </select>
+            </div>
+                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"></path></svg>
+                </div>
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="year">
+                    Year
+                </label>
+                <input th:field="*{year}" type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="year"
+                       placeholder="Enter year">
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="imageUrl">
+                    Image
+                </label>
+                <input th:field="*{imageUrl}" type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="imageUrl"
+                       placeholder="Enter image link">
+            </div>
+            <div class="flex items-center justify-between">
+                <input type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" value="Save"/>
+            </div>
+        </form>
+    </div>
 </section>
 <footer th:replace="fragments/footer"></footer>
-
-
 
 </body>
 </html>
