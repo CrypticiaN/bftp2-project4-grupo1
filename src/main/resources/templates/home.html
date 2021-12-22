@@ -9,7 +9,7 @@
 <header th:replace="fragments/header"></header>
 <section class="container">
     <h2 class="font-semibold ml-4 text-xl text-neutral-900 border-neutral-900 tracking-tight">Games Inventory</h2>
-<div class="grid grid-cols-3 gap-4 ">
+<div class="grid grid-cols-3 gap-4 mx-12 mb-20 md:justify-center">
     <div th:each="game: ${games}" class="max-w-sm rounded overflow-hidden shadow-lg">
         <img class="w-full" th:src="${game.imageUrl}">
         <div class="px-6 py-4">
@@ -22,14 +22,14 @@
             </p>
 
         </div>
-        <div class="px-6 pt-4 pb-2">
+      <!--  <div class="px-6 pt-4 pb-2">
             <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#photography</span>
             <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#travel</span>
             <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#winter</span>
-        </div>
+        </div> -->
         <div class="card-body">
-            <a  class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-white-700 rounded"   th:href="'/games/add/'+${game.id}">Edit</a>
-            <a  class="inline-block bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 border border-white-700 rounded"    th:href="'/games/delete/'+${game.id}">Delete</a>
+            <a  class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-white-700 rounded content-center"   th:href="'/games/add/'+${game.id}">Edit</a>
+            <a  class="inline-block bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 border border-white-700 rounded content-center"    th:href="'/games/delete/'+${game.id}">Delete</a>
         </div>
     </div>
 </div>
