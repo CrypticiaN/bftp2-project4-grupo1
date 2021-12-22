@@ -6,8 +6,8 @@
 <header th:replace="fragments/header"></header>
 <section class="container">
     <h1 class="font-semibold ml-4 text-xl text-neutral-900 border-neutral-900 tracking-tight" th:text="${title}"></h1>
-    <div class="w-full  max-w-xl">
-        <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" th:action="@{/games/add}" th:object="${game}" method="post">
+    <div class="w-full md:flex md:justify-center mb-6">
+        <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 ring-offset-2" th:action="@{/games/add}" th:object="${game}" method="post">
             <div class="mb-4">
                 <input type="hidden" th:field="*{id}">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="title">
@@ -22,6 +22,7 @@
                     Platform
                 </label>
                 <select th:field="*{platform}" id="platform" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                    <option th:value="${game.platform}"></option>
                     <option th:value="${game.platform}">Wii</option>
                     <option th:value="${game.platform}">X360</option>
                     <option th:value="${game.platform}">PS3</option>
@@ -38,10 +39,11 @@
                     <option th:value="${game.platform}">PSP</option>
                     <option th:value="${game.platform}">2600</option>
                 </select>
-            </div>
-                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                <div class="pointer-events-none absolute inset-y-0 mt-6 right-0 flex items-center px-2 text-gray-700">
                     <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"></path></svg>
                 </div>
+            </div>
+
             </div>
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="year">
