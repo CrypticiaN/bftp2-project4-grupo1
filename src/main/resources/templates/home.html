@@ -28,37 +28,11 @@
             <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#winter</span>
         </div>
         <div class="card-body">
-            <button class="bg-blue-500" th:href="'/games/add/'+${game.id}">Edit</button>
-            <button class="bg-red-500" th:href="'/games/delete/'+${game.id}">Delete</button>
+            <a  class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-white-700 rounded"   th:href="'/games/add/'+${game.id}">Edit</a>
+            <a  class="inline-block bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 border border-white-700 rounded"    th:href="'/games/delete/'+${game.id}">Delete</a>
         </div>
     </div>
 </div>
-
-
-
-
-
-
-
-
-
-    <div class="d-flex flex-row flex-sm-wrap justify-content-between align-items-center bd-highlight mb-3">
-        <div th:each="game: ${games}" class="card" style="width: 18rem;">
-            <img th:src="${game.imageUrl}" class="card-img-top" alt="cover">
-            <div class="card-body">
-                <h5 th:text="${game.title}" class="card-title"></h5>
-            </div>
-            <ul class="list-group list-group-flush">
-                <li th:text="${game.platform}" class="list-group-item"></li>
-                <li th:text="${game.year}" class="list-group-item"></li>
-                <li th:text="${game.id}" class="list-group-item" style="display:none;"></li>
-            </ul>
-            <div class="card-body">
-                <a class="btn btn-success btn-sm" th:href="'/games/add/'+${game.id}">Edit</a>
-                <a class="btn btn-danger btn-sm" th:href="'/games/delete/'+${game.id}">Delete</a>
-            </div>
-        </div>
-    </div>
 
 </section>
 <footer th:replace="fragments/footer"></footer>
