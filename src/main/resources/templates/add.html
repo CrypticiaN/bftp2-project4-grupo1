@@ -18,38 +18,41 @@
             </div>
             <div class="mb-4">
                 <div class="inline-block relative w-full">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="platform">
-                    Platform
-                </label>
-                <select th:field="*{platform}" id="platform" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
-                    <option th:value="${game.platform}"></option>
-                    <option th:value="${game.platform}">Wii</option>
-                    <option th:value="${game.platform}">X360</option>
-                    <option th:value="${game.platform}">PS3</option>
-                    <option th:value="${game.platform}">GB</option>
-                    <option th:value="${game.platform}">DS</option>
-                    <option th:value="${game.platform}">SNES</option>
-                    <option th:value="${game.platform}">NES</option>
-                    <option th:value="${game.platform}">GBA</option>
-                    <option th:value="${game.platform}">3DS</option>
-                    <option th:value="${game.platform}">N64</option>
-                    <option th:value="${game.platform}">PS</option>
-                    <option th:value="${game.platform}">XB</option>
-                    <option th:value="${game.platform}">PC</option>
-                    <option th:value="${game.platform}">PSP</option>
-                    <option th:value="${game.platform}">2600</option>
-                </select>
-                <div class="pointer-events-none absolute inset-y-0 mt-6 right-0 flex items-center px-2 text-gray-700">
-                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"></path></svg>
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="platform">
+                        Platform
+                    </label>
+                    <select th:field="*{platform}" id="platform" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                        <option th:value="${game.platform}"></option>
+                        <option th:value="Wii">Wii</option>
+                        <option th:value="X360">X360</option>
+                        <option th:value="PS3">PS3</option>
+                        <option th:value="GB">GB</option>
+                        <option th:value="DS">DS</option>
+                        <option th:value="SNES">SNES</option>
+                        <option th:value="NES">NES</option>
+                        <option th:value="GBA">GBA</option>
+                        <option th:value="3DS">3DS</option>
+                        <option th:value="N64">N64</option>
+                        <option th:value="PS">PS</option>
+                        <option th:value="XB">XB</option>
+                        <option th:value="PC">PC</option>
+                        <option th:value="PSP">PSP</option>
+                        <option th:value="2600">2600</option>
+                    </select>
+                    <div class="pointer-events-none absolute inset-y-0 mt-6 right-0 flex items-center px-2 text-gray-700">
+                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                            <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"></path>
+                        </svg>
+                    </div>
                 </div>
-            </div>
 
-            </div>
-            <div class="mb-4">
+
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="year">
                     Year
                 </label>
-                <input th:field="*{year}" type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="year"
+                <input th:field="*{year}" type="text"
+                       class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                       id="year"
                        placeholder="Enter year">
             </div>
             <div class="mb-4">
