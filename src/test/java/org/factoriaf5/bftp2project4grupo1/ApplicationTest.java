@@ -8,9 +8,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.factoriaf5.bftp2project4grupo1.repository.Game;
 import org.factoriaf5.bftp2project4grupo1.repository.GameRepository;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 import java.util.Optional;
@@ -42,13 +39,14 @@ class ApplicationTests {
     @Test
     void returnsTheExistingGames() throws Exception {
 
-        Game game = gameRepository.save(new Game("Wii Sports", "Wii", 2006, "https://static.wikia.nocookie.net/videojuego/images/9/98/WiiSport_BA-1-.jpg/revision/latest/top-crop/width/360/height/450?cb=20070629185312"));
+        Game game = gameRepository.save(new Game("Wii Sports", "Wii", 2006, "https://static.wikia.nocookie.net/videojuego/images/9/98/WiiSport_BA-1-.jpg/revision/latest/top-crop/width/360/height/450?cb=20070629185312", "Sci-fi"));
 
         mockMvc.perform(get("/"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("home"))
                 .andExpect(model().attribute("games", hasItem(game)));
     }
+
     @BeforeEach
     void setUp() {
         gameRepository.deleteAll();
@@ -86,8 +84,8 @@ class ApplicationTests {
     }
 
     @Test
-    void returnsAFormToEditBooks() throws Exception {
-        Game game = gameRepository.save(new Game("Harry Potter and the Philosopher's Stone", "J.K. Rowling", 2006, "www.google.es"));
+    void returnsAFormToEditGames() throws Exception {
+        Game game = gameRepository.save(new Game("Harry Potter and the Philosopher's Stone", "J.K. Rowling", 2006, "www.google.es", "Action"));
         mockMvc.perform(get("/games/add/" + game.getId()))
                 .andExpect(status().isOk())
                 .andExpect(view().name("/add"))
@@ -97,11 +95,38 @@ class ApplicationTests {
 
     @Test
     void allowsToDeleteAGame() throws Exception {
-        Game game = gameRepository.save(new Game("Harry Potter and the Philosopher's Stone", "J.K. Rowling", 2006, "www.google.es"));
+        Game game = gameRepository.save(new Game("Harry Potter and the Philosopher's Stone", "J.K. Rowling", 2006, "www.google.es", "Sci-fi"));
         mockMvc.perform(get("/games/delete/" + game.getId()))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/"));
 
         assertThat(gameRepository.findById(game.getId()), equalTo(Optional.empty()));
     }
+
+    @Test
+    void returnsGamesFromAGivenCategory() throws Exception {
+
+        Game fantasyGame = gameRepository.save(new Game("Super Mario", "GB", 1997, "https://www.lavanguardia.com/files/image_449_220/uploads/2020/09/12/5faa727a54ec2.png", "fantasy"));
+        Game softwareGame = gameRepository.save(new Game("Wii Sports", "X360", 2002, "https://www.lavanguardia.com/files/image_449_220/uploads/2020/09/12/5faa727a54ec2.png", "action"));
+
+        mockMvc.perform(get("/?category=fantasy"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("home"))
+                .andExpect(model().attribute("games", hasItem(fantasyGame)))
+                .andExpect(model().attribute("games", not(hasItem(softwareGame))));
+    }
+
+    @Test
+    void returnsGamesFromAGivenTitle() throws Exception {
+
+        Game nameTitle = gameRepository.save(new Game("Super Mario", "GB", 1997, "https://www.lavanguardia.com/files/image_449_220/uploads/2020/09/12/5faa727a54ec2.png", "fantasy"));
+        //Game softwareGame = gameRepository.save(new Game("Wii Sports", "X360", 2002, "https://www.lavanguardia.com/files/image_449_220/uploads/2020/09/12/5faa727a54ec2.png", "action"));
+
+        mockMvc.perform(get("/?title=Super Mario"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("home"))
+                .andExpect(model().attribute("games", hasItem(nameTitle)));
+                //.andExpect(model().attribute("games", not(hasItem(softwareGame))));
+    }
+
 }

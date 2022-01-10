@@ -4,11 +4,8 @@ import org.factoriaf5.bftp2project4grupo1.repository.Game;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 import org.factoriaf5.bftp2project4grupo1.repository.GameRepository;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 
 
 import java.util.List;
@@ -16,7 +13,7 @@ import java.util.List;
 @Controller
 public class GameController {
 
-    private GameRepository gameRepository;
+    private  GameRepository gameRepository;
 
     @Autowired
     public GameController(GameRepository gameRepository) {
@@ -24,9 +21,21 @@ public class GameController {
     }
 
     @GetMapping("/")
-    String listGames(Model model) {
-        List<Game> games = (List<Game>) gameRepository.findAll();
-        model.addAttribute("title", "Game List");
+    String listGames(Model model, @RequestParam(required = false) String category, String title) {
+        List<Game> games;
+        if (category == null){
+            games =  gameRepository.findAll();
+            model.addAttribute("title", "Game List");
+
+        } else if (title == null) {
+            games = gameRepository.findGamesByCategoryEquals(category);
+            model.addAttribute("title", "Games from category " + category);
+        }else{
+            games = gameRepository.findGamesByTitleContaining(title);
+            model.addAttribute("title", "Games from title " + title);
+
+        }
+
         model.addAttribute("games", games);
         return "home";
     }

@@ -8,7 +8,7 @@
 
 <header th:replace="fragments/header"></header>
 <section class="container">
-    <h2 class="font-semibold ml-4 text-xl text-neutral-900 border-neutral-900 tracking-tight">Games Inventory</h2>
+    <h2 class="font-semibold ml-4 text-xl text-neutral-900 border-neutral-900 tracking-tight" th:text="${title}"></h2>
 <div class="grid grid-cols-3 gap-4 mx-12 mb-20 md:justify-center">
     <div th:each="game: ${games}" class="max-w-sm rounded overflow-hidden shadow-lg">
         <img class="w-full" th:src="${game.imageUrl}">

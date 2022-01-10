@@ -14,17 +14,19 @@ import java.util.Objects;
         private String platform;
         private int year;
         private String imageUrl;
+        private String category;
 
         public Game() {
 
         }
 
-        public Game(String title, String platform, int year, String imageUrl) {
+        public Game(String title, String platform, int year, String imageUrl, String category) {
 
             this.title = title;
             this.platform = platform;
             this.year = year;
             this.imageUrl = imageUrl;
+            this.category = category;
         }
 
         public Long getId() {
