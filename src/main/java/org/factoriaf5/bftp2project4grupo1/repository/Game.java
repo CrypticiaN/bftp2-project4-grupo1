@@ -47,22 +47,25 @@ import java.util.Objects;
             this.id = id;
         }
 
-        public String getTitle() {
-            return title;
-        }
-
-        public void setTitle(String title) {
-            this.title = title;
-        }
-
         @Override
         public String toString() {
             return "Game{" +
                     "id=" + id +
                     ", title='" + title + '\'' +
                     ", platform='" + platform + '\'' +
-                    ", year='" + year+ '\'' +
+                    ", year=" + year +
+                    ", imageUrl='" + imageUrl + '\'' +
+                    ", category='" + category + '\'' +
+                    ", pegi='" + pegi + '\'' +
                     '}';
+        }
+
+        public String getTitle() {
+            return title;
+        }
+
+        public void setTitle(String title) {
+            this.title = title;
         }
 
         public String getPlatform() {

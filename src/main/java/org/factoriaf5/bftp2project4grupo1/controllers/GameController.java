@@ -31,7 +31,7 @@ public class GameController {
             games = gameRepository.findGamesByCategoryEquals(category);
             model.addAttribute("title", "Games from category " + category);
         }else if (pegi == null) {
-            games = gameRepository.findGamesByPegiEquals(pegi);
+            games = gameRepository.findAll();
             model.addAttribute("title", "Games from pegi " + pegi);
         }
         else{
