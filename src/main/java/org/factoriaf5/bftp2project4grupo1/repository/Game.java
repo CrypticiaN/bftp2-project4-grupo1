@@ -15,22 +15,32 @@ import java.util.Objects;
         private int year;
         private String imageUrl;
         private String category;
+        private String pegi;
 
         public Game() {
 
         }
 
-        public Game(String title, String platform, int year, String imageUrl, String category) {
+        public Game(String title, String platform, int year, String imageUrl, String category, String pegi) {
 
             this.title = title;
             this.platform = platform;
             this.year = year;
             this.imageUrl = imageUrl;
             this.category = category;
+            this.pegi = pegi;
         }
 
         public Long getId() {
             return id;
+        }
+
+        public String getCategory() {
+            return category;
+        }
+
+        public String getPegi() {
+            return pegi;
         }
 
         public void setId(Long id) {

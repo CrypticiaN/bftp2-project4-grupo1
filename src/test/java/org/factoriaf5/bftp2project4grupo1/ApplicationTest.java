@@ -39,7 +39,7 @@ class ApplicationTests {
     @Test
     void returnsTheExistingGames() throws Exception {
 
-        Game game = gameRepository.save(new Game("Wii Sports", "Wii", 2006, "https://static.wikia.nocookie.net/videojuego/images/9/98/WiiSport_BA-1-.jpg/revision/latest/top-crop/width/360/height/450?cb=20070629185312", "Sci-fi"));
+        Game game = gameRepository.save(new Game("Wii Sports", "Wii", 2006, "https://static.wikia.nocookie.net/videojuego/images/9/98/WiiSport_BA-1-.jpg/revision/latest/top-crop/width/360/height/450?cb=20070629185312", "Sci-fi", "7"));
 
         mockMvc.perform(get("/"))
                 .andExpect(status().isOk())
@@ -85,7 +85,7 @@ class ApplicationTests {
 
     @Test
     void returnsAFormToEditGames() throws Exception {
-        Game game = gameRepository.save(new Game("Harry Potter and the Philosopher's Stone", "J.K. Rowling", 2006, "www.google.es", "Action"));
+        Game game = gameRepository.save(new Game("Harry Potter and the Philosopher's Stone", "J.K. Rowling", 2006, "www.google.es", "Action", "7"));
         mockMvc.perform(get("/games/add/" + game.getId()))
                 .andExpect(status().isOk())
                 .andExpect(view().name("/add"))
@@ -95,7 +95,7 @@ class ApplicationTests {
 
     @Test
     void allowsToDeleteAGame() throws Exception {
-        Game game = gameRepository.save(new Game("Harry Potter and the Philosopher's Stone", "J.K. Rowling", 2006, "www.google.es", "Sci-fi"));
+        Game game = gameRepository.save(new Game("Harry Potter and the Philosopher's Stone", "J.K. Rowling", 2006, "www.google.es", "Sci-fi", "12"));
         mockMvc.perform(get("/games/delete/" + game.getId()))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/"));
@@ -106,8 +106,8 @@ class ApplicationTests {
     @Test
     void returnsGamesFromAGivenCategory() throws Exception {
 
-        Game fantasyGame = gameRepository.save(new Game("Super Mario", "GB", 1997, "https://www.lavanguardia.com/files/image_449_220/uploads/2020/09/12/5faa727a54ec2.png", "fantasy"));
-        Game softwareGame = gameRepository.save(new Game("Wii Sports", "X360", 2002, "https://www.lavanguardia.com/files/image_449_220/uploads/2020/09/12/5faa727a54ec2.png", "action"));
+        Game fantasyGame = gameRepository.save(new Game("Super Mario", "GB", 1997, "https://www.lavanguardia.com/files/image_449_220/uploads/2020/09/12/5faa727a54ec2.png", "fantasy", "3"));
+        Game softwareGame = gameRepository.save(new Game("Wii Sports", "X360", 2002, "https://www.lavanguardia.com/files/image_449_220/uploads/2020/09/12/5faa727a54ec2.png", "action", "12"));
 
         mockMvc.perform(get("/?category=fantasy"))
                 .andExpect(status().isOk())
@@ -119,7 +119,7 @@ class ApplicationTests {
     @Test
     void returnsGamesFromAGivenTitle() throws Exception {
 
-        Game nameTitle = gameRepository.save(new Game("Super Mario", "GB", 1997, "https://www.lavanguardia.com/files/image_449_220/uploads/2020/09/12/5faa727a54ec2.png", "fantasy"));
+        Game nameTitle = gameRepository.save(new Game("Super Mario", "GB", 1997, "https://www.lavanguardia.com/files/image_449_220/uploads/2020/09/12/5faa727a54ec2.png", "fantasy", "7"));
         //Game softwareGame = gameRepository.save(new Game("Wii Sports", "X360", 2002, "https://www.lavanguardia.com/files/image_449_220/uploads/2020/09/12/5faa727a54ec2.png", "action"));
 
         mockMvc.perform(get("/?title=Super Mario"))
@@ -128,5 +128,7 @@ class ApplicationTests {
                 .andExpect(model().attribute("games", hasItem(nameTitle)));
                 //.andExpect(model().attribute("games", not(hasItem(softwareGame))));
     }
+
+
 
 }

@@ -21,7 +21,7 @@ public class GameController {
     }
 
     @GetMapping("/")
-    String listGames(Model model, @RequestParam(required = false) String category, String title) {
+    String listGames(Model model, @RequestParam(required = false) String category, String title, String pegi) {
         List<Game> games;
         if (category == null){
             games =  gameRepository.findAll();
@@ -30,7 +30,11 @@ public class GameController {
         } else if (title == null) {
             games = gameRepository.findGamesByCategoryEquals(category);
             model.addAttribute("title", "Games from category " + category);
-        }else{
+        }else if (pegi == null) {
+            games = gameRepository.findGamesByPegiEquals(pegi);
+            model.addAttribute("title", "Games from pegi " + pegi);
+        }
+        else{
             games = gameRepository.findGamesByTitleContaining(title);
             model.addAttribute("title", "Games from title " + title);
 
