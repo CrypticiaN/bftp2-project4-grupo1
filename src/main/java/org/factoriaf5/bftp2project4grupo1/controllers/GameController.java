@@ -21,7 +21,7 @@ public class GameController {
     }
 
     @GetMapping("/")
-    String listGames(Model model, @RequestParam(required = false) String category, String title, String pegi) {
+    String listGames(Model model, @RequestParam(required = false) String category, String pegi, double price, double priceWithDiscount) {
         List<Game> games;
 
         if (category != null) {
@@ -35,17 +35,17 @@ public class GameController {
 
             String pegi2 = "";
             String contentDescriptor;
-
-
             switch (pegi2)
             {
                 case "3":  contentDescriptor = "suitable for kids";
+                    break;
+                case "7":  contentDescriptor = "suitable for all ages";
                     break;
                 case "12":  contentDescriptor = "non-realistic violence";
                     break;
                 case "15": contentDescriptor = "realistic violence";
                     break;
-                case "18": contentDescriptor = "extreve violence";
+                case "18": contentDescriptor = "extreme violence";
                     break;
                 default: contentDescriptor = "no tiene ninguna descripcion";
                     break;
@@ -54,9 +54,13 @@ public class GameController {
         }
 
         else {
-            games =  gameRepository.findAll();
-            model.addAttribute("title", "Game List");
-
+            if(price != priceWithDiscount){
+               games = gameRepository.findGamesByPriceWithDiscount(price);
+               model.addAttribute("price", "GAmes with price" + price);
+            }else {
+                games = gameRepository.findAll();
+                model.addAttribute("title", "Game List");
+            }
         }
 
         model.addAttribute("games", games);
