@@ -16,12 +16,13 @@ import java.util.Objects;
         private String imageUrl;
         private String category;
         private String pegi;
+        private String contentDescriptor;
 
         public Game() {
 
         }
 
-        public Game(String title, String platform, int year, String imageUrl, String category, String pegi) {
+        public Game(String title, String platform, int year, String imageUrl, String category, String pegi, String contentDescriptor) {
 
             this.title = title;
             this.platform = platform;
@@ -29,6 +30,15 @@ import java.util.Objects;
             this.imageUrl = imageUrl;
             this.category = category;
             this.pegi = pegi;
+            this.contentDescriptor = contentDescriptor;
+        }
+
+        public String getContentDescriptor() {
+            return contentDescriptor;
+        }
+
+        public void setContentDescriptor(String contentDescriptor) {
+            this.contentDescriptor = contentDescriptor;
         }
 
         public Long getId() {

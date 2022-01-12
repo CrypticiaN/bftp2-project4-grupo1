@@ -32,6 +32,25 @@ public class GameController {
         else if (pegi != null) {
             games = gameRepository.findGamesByPegiEquals(pegi);
             model.addAttribute("title", "Games from pegi " + pegi);
+
+            String pegi2 = "";
+            String contentDescriptor;
+
+
+            switch (pegi2)
+            {
+                case "3":  contentDescriptor = "suitable for kids";
+                    break;
+                case "12":  contentDescriptor = "non-realistic violence";
+                    break;
+                case "15": contentDescriptor = "realistic violence";
+                    break;
+                case "18": contentDescriptor = "extreve violence";
+                    break;
+                default: contentDescriptor = "no tiene ninguna descripcion";
+                    break;
+            }
+            System.out.println(contentDescriptor);
         }
 
         else {
