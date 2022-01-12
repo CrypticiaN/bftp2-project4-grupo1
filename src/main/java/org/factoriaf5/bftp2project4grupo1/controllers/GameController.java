@@ -21,7 +21,7 @@ public class GameController {
     }
 
     @GetMapping("/")
-    String listGames(Model model, @RequestParam(required = false) String category, String pegi, double price, double priceWithDiscount) {
+    String listGames(Model model, @RequestParam(required = false) String category, String pegi) {
         List<Game> games;
 
         if (category != null) {
@@ -52,15 +52,10 @@ public class GameController {
             }
             System.out.println(contentDescriptor);
         }
-
         else {
-            if(price != priceWithDiscount){
-               games = gameRepository.findGamesByPriceWithDiscount(price);
-               model.addAttribute("price", "GAmes with price" + price);
-            }else {
-                games = gameRepository.findAll();
-                model.addAttribute("title", "Game List");
-            }
+
+            games =  gameRepository.findAll();
+            model.addAttribute("title", "Game List");
         }
 
         model.addAttribute("games", games);

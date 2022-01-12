@@ -11,7 +11,7 @@ import java.util.List;
     List<Game> findGamesByTitleContaining(String word);
     List<Game> findGamesByCategoryEquals(String category);
     List<Game> findGamesByPegiEquals(String pegi);
-    List<Game> findGamesByPriceWithDiscount(double price);
+
 
 }
 
