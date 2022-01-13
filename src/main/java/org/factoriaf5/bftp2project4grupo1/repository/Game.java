@@ -31,19 +31,11 @@ import java.util.Objects;
             this.year = year;
             this.imageUrl = imageUrl;
             this.category = category;
-            this.price = price;
-            this.priceWithDiscount = priceWithDiscount;
             this.pegi = pegi;
             this.contentDescriptor = contentDescriptor;
         }
 
-        public double getPriceWithDiscount() {
-            return priceWithDiscount;
-        }
 
-        public void setPriceWithDiscount(double priceWithDiscount) {
-            this.priceWithDiscount = priceWithDiscount;
-        }
 
         public String getContentDescriptor() {
             return contentDescriptor;

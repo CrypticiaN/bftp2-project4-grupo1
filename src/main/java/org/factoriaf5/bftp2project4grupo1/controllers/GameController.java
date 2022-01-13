@@ -20,7 +20,8 @@ public class GameController {
         this.gameRepository = gameRepository;
     }
     @GetMapping("/")
-    String listGames(Model model, @RequestParam(required = false) String category, String pegi, Double price, Double priceWithDiscount) {
+    String listGames(Model model, @RequestParam(required = false) String category, String pegi, double price, double priceWithDiscount) {
+
         List<Game> games;
 
         if (category != null) {
@@ -51,7 +52,6 @@ public class GameController {
             }
             System.out.println(contentDescriptor);
         }
-
         else {
 
             if(price != priceWithDiscount) {
