@@ -20,7 +20,7 @@ public class GameController {
         this.gameRepository = gameRepository;
     }
     @GetMapping("/")
-    String listGames(Model model, @RequestParam(required = false) String category, String pegi, double price, double priceWithDiscount) {
+    String listGames(Model model, @RequestParam(required = false) String category, String pegi, Double price, Double priceWithDiscount) {
 
         List<Game> games;
 
@@ -47,11 +47,12 @@ public class GameController {
                     break;
                 case "18": contentDescriptor = "extreme violence";
                     break;
-                default: contentDescriptor = "no tiene ninguna descripcion";
+                default: contentDescriptor = "no tiene ninguna descripción";
                     break;
             }
             System.out.println(contentDescriptor);
         }
+
         else {
 
             if(price != priceWithDiscount) {
