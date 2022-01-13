@@ -142,6 +142,33 @@ class ApplicationTests {
         //.andExpect(model().attribute("games", not(hasItem(softwareGame))));
     }
 
+    @Test
+    void returnsPriceWithDiscount() throws Exception {
+
+        Game game = gameRepository.save(new Game("Sims", "GB", 1997,
+                "https://www.lavanguardia.com/files/image_449_220/uploads/2020/09/12/5faa727a54ec2.png",
+                "fantasy", 14.99, 14.99, "7", ""));
+
+        mockMvc.perform(get("/"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("home"))
+                .andExpect(model().attribute("games", hasItem(game)));
+
+        List<Game> existingGames = (List<Game>) gameRepository.findAll();
+        assertThat(existingGames, contains(allOf(
+                hasProperty("title", equalTo("Sims")),
+                hasProperty("platform", equalTo("GB")),
+                hasProperty("year", equalTo(1997)),
+                hasProperty("imageUrl", equalTo("https://www.lavanguardia.com/files/image_449_220/uploads/2020/09/12/5faa727a54ec2.png")),
+                hasProperty("category", equalTo("fantasy")),
+                hasProperty("price", equalTo(14.99)),
+                hasProperty("pegi", equalTo("7")),
+                hasProperty("contentDescriptor", equalTo(""))
+
+        )));
+
+    }
+
 
 
 }

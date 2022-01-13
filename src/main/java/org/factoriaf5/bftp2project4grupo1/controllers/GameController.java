@@ -19,9 +19,8 @@ public class GameController {
     public GameController(GameRepository gameRepository) {
         this.gameRepository = gameRepository;
     }
-
     @GetMapping("/")
-    String listGames(Model model, @RequestParam(required = false) String category, String pegi, double price, double priceWithDiscount) {
+    String listGames(Model model, @RequestParam(required = false) String category, String pegi, Double price, Double priceWithDiscount) {
         List<Game> games;
 
         if (category != null) {
@@ -54,10 +53,13 @@ public class GameController {
         }
 
         else {
-            if(price != priceWithDiscount){
+
+            if(price != priceWithDiscount) {
                games = gameRepository.findGamesByPriceWithDiscount(price);
-               model.addAttribute("price", "GAmes with price" + price);
-            }else {
+               model.addAttribute("price", "Games with price" + price);
+            }
+
+            else {
                 games = gameRepository.findAll();
                 model.addAttribute("title", "Game List");
             }

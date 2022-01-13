@@ -15,7 +15,7 @@ import java.util.Objects;
         private int year;
         private String imageUrl;
         private String category;
-        private Double price;
+        private double price;
         private double priceWithDiscount;
         private String pegi;
         private String contentDescriptor;
@@ -24,7 +24,7 @@ import java.util.Objects;
 
         }
 
-        public Game(String title, String platform, int year, String imageUrl, String category, Double price, double priceWithDiscount, String pegi, String contentDescriptor) {
+        public Game(String title, String platform, int year, String imageUrl, String category, double price, double priceWithDiscount, String pegi, String contentDescriptor) {
 
             this.title = title;
             this.platform = platform;
@@ -69,18 +69,8 @@ import java.util.Objects;
             this.id = id;
         }
 
-        @Override
-        public String toString() {
-            return "Game{" +
-                    "id=" + id +
-                    ", title='" + title + '\'' +
-                    ", platform='" + platform + '\'' +
-                    ", year=" + year +
-                    ", imageUrl='" + imageUrl + '\'' +
-                    ", category='" + category + '\'' +
-                    ", pegi='" + pegi + '\'' +
-                    '}';
-        }
+
+
 
         public String getTitle() {
             return title;
@@ -106,6 +96,15 @@ import java.util.Objects;
             this.year= year;
         }
 
+        public double getPrice() {
+            return price;
+        }
+
+        public void setPrice(double price) {
+            this.price = price;
+        }
+
+
         @Override
         public boolean equals(Object o) {
             if (this == o) return true;
@@ -126,6 +125,22 @@ import java.util.Objects;
 
         public void setImageUrl(String imageUrl) {
             this.imageUrl = imageUrl;
+        }
+
+        @Override
+        public String toString() {
+            return "Game{" +
+                    "id=" + id +
+                    ", title='" + title + '\'' +
+                    ", platform='" + platform + '\'' +
+                    ", year=" + year +
+                    ", imageUrl='" + imageUrl + '\'' +
+                    ", category='" + category + '\'' +
+                    ", price=" + price +
+                    ", priceWithDiscount=" + priceWithDiscount +
+                    ", pegi='" + pegi + '\'' +
+                    ", contentDescriptor='" + contentDescriptor + '\'' +
+                    '}';
         }
     }
 
