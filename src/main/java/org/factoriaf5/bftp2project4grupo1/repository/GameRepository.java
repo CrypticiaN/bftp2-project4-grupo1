@@ -8,8 +8,8 @@ import java.util.List;
 
 @Repository
     public interface GameRepository extends JpaRepository<Game, Long> {
-    List<Game> findGamesByTitleContaining(String word);
     List<Game> findGamesByCategoryEquals(String category);
+    List<Game> findGamesByPriceWithDiscount(Double price);
     List<Game> findGamesByPegiEquals(String pegi);
 
 

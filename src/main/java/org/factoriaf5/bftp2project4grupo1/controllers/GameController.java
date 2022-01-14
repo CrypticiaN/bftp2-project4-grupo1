@@ -19,9 +19,9 @@ public class GameController {
     public GameController(GameRepository gameRepository) {
         this.gameRepository = gameRepository;
     }
-
     @GetMapping("/")
-    String listGames(Model model, @RequestParam(required = false) String category, String pegi) {
+    String listGames(Model model, @RequestParam(required = false) String category, String pegi, Double price, Double priceWithDiscount) {
+
         List<Game> games;
 
         if (category != null) {
@@ -47,15 +47,23 @@ public class GameController {
                     break;
                 case "18": contentDescriptor = "extreme violence";
                     break;
-                default: contentDescriptor = "no tiene ninguna descripcion";
+                default: contentDescriptor = "no tiene ninguna descripción";
                     break;
             }
             System.out.println(contentDescriptor);
         }
+
         else {
 
-            games =  gameRepository.findAll();
-            model.addAttribute("title", "Game List");
+            if(price != priceWithDiscount) {
+               games = gameRepository.findGamesByPriceWithDiscount(price);
+               model.addAttribute("price", "Games with price" + price);
+            }
+
+            else {
+                games = gameRepository.findAll();
+                model.addAttribute("title", "Game List");
+            }
         }
 
         model.addAttribute("games", games);

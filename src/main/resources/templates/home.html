@@ -2,41 +2,54 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 
-
 <head th:replace="fragments/head"></head>
 <body>
 
 <header th:replace="fragments/header"></header>
 <section class="container m-2 mx-auto">
-    <h2 class="font-semibold ml-4 text-4xl m-3 text-neutral-900 border-neutral-900 tracking-tight" th:text="${title}"></h2>
-<div class="grid grid-cols-3 gap-7 mb-20 md:justify-center">
-    <div th:each="game: ${games}" class="max-w-sm rounded overflow-hidden shadow-lg">
-        <img class="w-full" th:src="${game.imageUrl}">
-        <div class="px-6 py-4">
-            <div class="font-bold text-xl mb-2">
-                <h5 th:text="${game.title}"></h5>
-            </div>
-            <p th:text="${game.platform}" class="text-gray-700 text-base">
-            </p>
-            <p th:text="${game.year}" class="text-gray-700 text-base">
-            </p>
-            <span th:text="${game.contentDescriptor}" class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#photography</span>
-            <span th:text="${game.category}" class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#travel</span>
+    <h2 class="font-semibold ml-4 text-4xl m-3 text-neutral-900 border-neutral-900 tracking-tight"
+        th:text="${title}"></h2>
+    <div class="grid grid-cols-3 gap-7 mb-20 md:justify-center">
+        <div th:each="game: ${games}" class="max-w-sm rounded overflow-hidden shadow-lg">
+            <img class="w-full" th:src="${game.imageUrl}">
+            <div class="px-6 py-4">
+                <div class="font-bold text-xl mb-2">
+                    <h5 th:text="${game.title}"></h5>
+                </div>
+                <p th:text="${game.platform}" class="text-gray-700 text-base">
+                </p>
+                <p th:text="${game.year}" class="text-gray-700 text-base">
+                </p>
+                <span th:text="${game.contentDescriptor}"
+                      class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"></span>
+                <span th:text="${game.category}"
+                      class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"></span>
+                <span id= "price" th:text="${game.price}"
+                      class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                </span>
 
-        </div>
-      <!--  <div class="px-6 pt-4 pb-2">
-            <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#winter</span>
-        </div> -->
-        <div class="card-body">
-            <a  class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-white-700 rounded content-center"   th:href="'/games/add/'+${game.id}">Edit</a>
-            <a  class="inline-block bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 border border-white-700 rounded content-center"    th:href="'/games/delete/'+${game.id}">Delete</a>
+                <span id="discount"
+                      class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                </span>
+                <span id="priceWithDiscount" th:text="${game.priceWithDiscount}"
+                      class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                </span>
+
+            </div>
+            <!--  <div class="px-6 pt-4 pb-2">
+                  <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#winter</span>
+              </div> -->
+            <div class="card-body">
+                <a class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-white-700 rounded content-center"
+                   th:href="'/games/add/'+${game.id}">Edit</a>
+                <a class="inline-block bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 border border-white-700 rounded content-center"
+                   th:href="'/games/delete/'+${game.id}">Delete</a>
+            </div>
         </div>
     </div>
-</div>
 
 </section>
 <footer th:replace="fragments/footer"></footer>
-
 
 
 </body>
