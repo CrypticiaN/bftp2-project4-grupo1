@@ -15,8 +15,8 @@ import java.util.Objects;
         private int year;
         private String imageUrl;
         private String category;
-        private  Double price;
-        private  Double priceWithDiscount;
+        private Double price;
+        private Double priceWithDiscount;
         private String pegi;
         private String contentDescriptor;
 
@@ -24,7 +24,7 @@ import java.util.Objects;
 
         }
 
-        public Game(String title, String platform, int year, String imageUrl, String category,  Double price,  Double priceWithDiscount, String pegi, String contentDescriptor) {
+        public Game(String title, String platform, int year, String imageUrl, String category, Double price, Double priceWithDiscount, String pegi, String contentDescriptor) {
             this.id = id;
             this.title = title;
             this.platform = platform;
@@ -93,6 +93,7 @@ import java.util.Objects;
         public void setPrice( Double price) {
             this.price = price;
         }
+
 
         public  Double getPriceWithDiscount() {
             return priceWithDiscount;
