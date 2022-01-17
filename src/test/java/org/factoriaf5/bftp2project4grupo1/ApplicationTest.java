@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.factoriaf5.bftp2project4grupo1.repository.Game;
 import org.factoriaf5.bftp2project4grupo1.repository.GameRepository;
@@ -27,6 +28,7 @@ class ApplicationTests {
     MockMvc mockMvc;
 
     @Test
+    @WithMockUser
     void loadsTheHomePage() throws Exception {
         mockMvc.perform(get("/"))
                 .andExpect(status().isOk())
@@ -37,6 +39,7 @@ class ApplicationTests {
     GameRepository gameRepository;
 
     @Test
+    @WithMockUser
     void returnsTheExistingGames() throws Exception {
 
         Game game = gameRepository.save(new Game("Wii Sports", "Wii", 2006, "https://static.wikia.nocookie.net/videojuego/images/9/98/WiiSport_BA-1-.jpg/revision/latest/top-crop/width/360/height/450?cb=20070629185312", "Sci-fi", 19.99,19.99, "7", ""));
@@ -53,6 +56,7 @@ class ApplicationTests {
     }
 
     @Test
+    @WithMockUser
     void returnsAFormToAddNewGame() throws Exception {
         mockMvc.perform(get("/add"))
                 .andExpect(status().isOk())
@@ -63,6 +67,7 @@ class ApplicationTests {
 
 
     @Test
+    @WithMockUser
     void allowsToCreateAGame() throws Exception {
         mockMvc.perform(post("/games/add")
                         .param("title", "Harry Potter and the Philosopher's Stone")
@@ -84,6 +89,7 @@ class ApplicationTests {
     }
 
     @Test
+    @WithMockUser
     void returnsAFormToEditGames() throws Exception {
         Game game = gameRepository.save(new Game("Harry Potter and the Philosopher's Stone", "J.K. Rowling", 2006, "www.google.es", "Action", 19.99,19.99, "7", "suitable for all ages"));
         mockMvc.perform(get("/games/add/" + game.getId()))
@@ -94,6 +100,7 @@ class ApplicationTests {
     }
 
     @Test
+    @WithMockUser
     void allowsToDeleteAGame() throws Exception {
         Game game = gameRepository.save(new Game("Harry Potter and the Philosopher's Stone", "J.K. Rowling", 2006, "www.google.es", "Sci-fi", 19.99,19.99, "12", "non realistic violence"));
         mockMvc.perform(get("/games/delete/" + game.getId()))
@@ -104,6 +111,7 @@ class ApplicationTests {
     }
 
     @Test
+    @WithMockUser
     void returnsGamesFromAGivenCategory() throws Exception {
 
         Game fantasyGame = gameRepository.save(new Game("Super Mario", "GB", 1997, "https://www.lavanguardia.com/files/image_449_220/uploads/2020/09/12/5faa727a54ec2.png", "fantasy", 19.99,19.99, "3", "suitable for kids"));
@@ -117,6 +125,7 @@ class ApplicationTests {
     }
 
     @Test
+    @WithMockUser
     void returnsGamesFromAGivenTitle() throws Exception {
 
         Game nameTitle = gameRepository.save(new Game("Super Mario", "GB", 1997, "https://www.lavanguardia.com/files/image_449_220/uploads/2020/09/12/5faa727a54ec2.png", "fantasy", 19.99,19.99, "7", "suitable for all ages"));
@@ -128,6 +137,7 @@ class ApplicationTests {
     }
 
     @Test
+    @WithMockUser
     void returnsGamesFromAGivenPegi() throws Exception {
 
         Game contentDescriptor = gameRepository.save(new Game("Super Mario", "GB", 1997, "https://www.lavanguardia.com/files/image_449_220/uploads/2020/09/12/5faa727a54ec2.png", "fantasy", 19.99,19.99, "7", ""));
@@ -139,6 +149,7 @@ class ApplicationTests {
     }
 
     @Test
+    @WithMockUser
     void returnsPriceWithDiscount() throws Exception {
 
         Game game = gameRepository.save(new Game("Sims", "GB", 1997,
