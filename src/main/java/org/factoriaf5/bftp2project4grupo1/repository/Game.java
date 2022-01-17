@@ -2,6 +2,7 @@ package org.factoriaf5.bftp2project4grupo1.repository;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.math.RoundingMode;
 import java.util.Objects;
 
     @Entity
@@ -96,7 +97,11 @@ import java.util.Objects;
 
 
         public  Double getPriceWithDiscount() {
-            return priceWithDiscount;
+            Double discountedPrice = (price) - (price * 10/100);
+            Double d = Double.parseDouble(String.format("%.2f", discountedPrice));
+            return d;
+
+
         }
 
         public void setPriceWithDiscount( Double priceWithDiscount) {
@@ -144,6 +149,10 @@ import java.util.Objects;
 
         public boolean isDiscount() {
             return priceWithDiscount<price;
+        }
+
+        public int Discount() {
+            return (int) ((priceWithDiscount) / price *100);
         }
     }
 
