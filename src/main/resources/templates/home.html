@@ -9,6 +9,7 @@
 <section class="container m-2 mx-auto">
     <h2 class="font-semibold ml-4 text-4xl m-3 text-neutral-900 border-neutral-900 tracking-tight"
         th:text="${title}"></h2>
+
     <div class="grid grid-cols-3 gap-7 mb-20 md:justify-center">
         <div th:each="game: ${games}" class="max-w-sm rounded overflow-hidden shadow-lg">
             <img class="w-full" th:src="${game.imageUrl}">
@@ -24,14 +25,14 @@
                       class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"></span>
                 <span th:text="${game.category}"
                       class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"></span>
-                <span id= "price" th:text="${game.price}"
+                <span id= "price" th:text="${game.price}" th:classappend="${game.isDiscount()? 'linethrough':''}"
                       class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
                 </span>
 
                 <span id="discount"
                       class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
                 </span>
-                <span id="priceWithDiscount" th:text="${game.priceWithDiscount}"
+                <span id="priceWithDiscount" th:text="${game.priceWithDiscount}" th:if="${game.isDiscount()}"
                       class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
                 </span>
 

@@ -5,9 +5,9 @@ let priceWithDiscount = document.getElementById('priceWithDiscount');
 let discountValue = parseFloat(document.getElementById('discount').innerHTML);
 let discountPrice;
 
-document.addEventListener("DOMContentLoaded", function() {
-    alert("Funciona");
-});
+function showAlert() {
+    alert("The button was clicked!");
+}
 
 const getPrice = () => {
     if (discountValue > 0) {

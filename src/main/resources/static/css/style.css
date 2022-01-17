@@ -1,5 +1,5 @@
 
-#price {
+#price.linethrough {
     text-decoration: line-through;
     text-decoration-color: red;
 }

@@ -141,5 +141,9 @@ import java.util.Objects;
                     ", contentDescriptor='" + contentDescriptor + '\'' +
                     '}';
         }
+
+        public boolean isDiscount() {
+            return priceWithDiscount<price;
+        }
     }
 
