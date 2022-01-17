@@ -53,18 +53,13 @@ public class GameController {
             System.out.println(contentDescriptor);
         }
 
-        else {
 
-            if(price != priceWithDiscount) {
-               games = gameRepository.findGamesByPriceWithDiscount(price);
-               model.addAttribute("price", "Games with price" + price);
-            }
 
             else {
                 games = gameRepository.findAll();
                 model.addAttribute("title", "Game List");
             }
-        }
+
 
         model.addAttribute("games", games);
         return "home";

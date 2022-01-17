@@ -1,8 +1,5 @@
 
-*{
-    background-color: aqua;
-}
-
-.logotext {
-    font-style: italic;
+#price {
+    text-decoration: line-through;
+    text-decoration-color: red;
 }
