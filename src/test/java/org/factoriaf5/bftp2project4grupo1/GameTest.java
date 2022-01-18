@@ -10,12 +10,11 @@ public class GameTest {
     @Test
     void elJuegoNosDiceSiTieneDescuentoONo() {
         Game game = new Game("Wii Sports","Wii",2006,"https://www.gamulator.com/img/roms/wii-sports-nintendo-wii-cover-340x483.jpg", "Fantasy", 19.99, 0, 19.99, "7", "suitable for all ages");
-        assert(!game.isDiscounted());
-        Game game2 = new Game("Wii Sports","Wii",2006,"https://www.gamulator.com/img/roms/wii-sports-nintendo-wii-cover-340x483.jpg", "Fantasy", 19.99, 0, 17.99, "7", "suitable for all ages");
-        assert(game2.isDiscounted());
+        assertThat(game.isDiscounted(), equalTo(false));
+        Game game2 = new Game("Wii Sports","Wii",2006,"https://www.gamulator.com/img/roms/wii-sports-nintendo-wii-cover-340x483.jpg", "Fantasy", 19.99, 10, 17.99, "7", "suitable for all ages");
+        assertThat(game2.isDiscounted(), equalTo(true));
 
     }
-
 
     @Test
     void name2() {

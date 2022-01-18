@@ -2,6 +2,9 @@ package org.factoriaf5.bftp2project4grupo1.repository;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.Objects;
 
     @Entity
@@ -15,9 +18,9 @@ import java.util.Objects;
         private int year;
         private String imageUrl;
         private String category;
-        private Double price;
+        private double price;
         private int discount;
-        private Double priceWithDiscount;
+        private double priceWithDiscount;
         private String pegi;
         private String contentDescriptor;
 
@@ -25,7 +28,7 @@ import java.util.Objects;
 
         }
 
-        public Game(String title, String platform, int year, String imageUrl, String category, Double price, int discount, Double priceWithDiscount, String pegi, String contentDescriptor) {
+        public Game(String title, String platform, int year, String imageUrl, String category, double price, int discount, double priceWithDiscount, String pegi, String contentDescriptor) {
             this.title = title;
             this.platform = platform;
             this.year = year;
@@ -87,11 +90,11 @@ import java.util.Objects;
             this.year= year;
         }
 
-        public  Double getPrice() {
+        public  double getPrice() {
             return price;
         }
 
-        public void setPrice( Double price) {
+        public void setPrice( double price) {
             this.price = price;
         }
 
@@ -104,15 +107,13 @@ import java.util.Objects;
             this.discount = discount;
         }
 
-        public  Double getPriceWithDiscount() {
-            Double discountedPrice = (getPrice()) - (getPrice() *  getDiscount()/100);
-            Double d = Double.parseDouble(String.format("%.2f", discountedPrice));
-            return d;
-
-
+        public  double getPriceWithDiscount() {
+            double d =  ((getPrice()) - (getPrice() *  getDiscount()/100));
+            BigDecimal bd = new BigDecimal(d).setScale(2, RoundingMode.HALF_EVEN);
+            return bd.doubleValue();
         }
 
-        public void setPriceWithDiscount( Double priceWithDiscount) {
+        public void setPriceWithDiscount( double priceWithDiscount) {
             this.priceWithDiscount = priceWithDiscount;
         }
 
