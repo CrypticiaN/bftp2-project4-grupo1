@@ -105,7 +105,7 @@ import java.util.Objects;
         }
 
         public  Double getPriceWithDiscount() {
-            Double discountedPrice = (price) - (price *  discount/100);
+            Double discountedPrice = (getPrice()) - (getPrice() *  getDiscount()/100);
             Double d = Double.parseDouble(String.format("%.2f", discountedPrice));
             return d;
 
@@ -156,11 +156,9 @@ import java.util.Objects;
         }
 
         public boolean isDiscounted() {
-            return getPriceWithDiscount() < price;
+            return getPriceWithDiscount() < getPrice();
         }
 
-        public int discount() {
-            return (int) ((priceWithDiscount) / price * 100);
-        }
+
     }
 

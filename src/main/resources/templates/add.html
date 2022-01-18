@@ -50,14 +50,14 @@
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="year">
                     Year
                 </label>
-                <input th:field="*{year}" type="text"
+                <input required th:field="*{year}" type="text"
                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                        id="year"
                        placeholder="Enter year">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="price">
                     Price
                 </label>
-                <input th:field="*{price}" type="text"
+                <input required th:field="*{price}" type="text"
                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                        id="price"
                        placeholder="Enter price">
@@ -65,7 +65,7 @@
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="discount">
                     Discount
                 </label>
-                <input th:field="*{discount}" type="text"
+                <input required th:field="*{discount}" type="text"
                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                        id="discount"
                        placeholder="Enter discount">
@@ -74,7 +74,7 @@
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="imageUrl">
                     Image
                 </label>
-                <input th:field="*{imageUrl}" type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="imageUrl"
+                <input required th:field="*{imageUrl}" type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="imageUrl"
                        placeholder="Enter image link">
             </div>
             <div class="flex items-center justify-between">
