@@ -44,6 +44,40 @@
                             <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"></path>
                         </svg>
                     </div>
+                </div><div class="inline-block relative w-full">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="category">
+                        Category
+                    </label>
+                    <select th:field="*{category}" id="category" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                        <option th:value="${game.category}"></option>
+                        <option th:value="Fantasy">Fantasy</option>
+                        <option th:value="Sports">Sports</option>
+                        <option th:value="Sci-fi">Sci-fi</option>
+
+                    </select>
+                    <div class="pointer-events-none absolute inset-y-0 mt-6 right-0 flex items-center px-2 text-gray-700">
+                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                            <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"></path>
+                        </svg>
+                    </div>
+                </div><div class="inline-block relative w-full">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="pegi2">
+                        Pegi
+                    </label>
+                    <select th:field="*{contentDescriptor}" id="pegi2" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                        <option th:value="${game.pegi}"></option>
+                        <option th:value="3">Pegi-3</option>
+                        <option th:value="7">Pegi-7</option>
+                        <option th:value="12">Pegi-12</option>
+                        <option th:value="15">Pegi-15</option>
+                        <option th:value="18">Pegi-18</option>
+
+                    </select>
+                    <div class="pointer-events-none absolute inset-y-0 mt-6 right-0 flex items-center px-2 text-gray-700">
+                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                            <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"></path>
+                        </svg>
+                    </div>
                 </div>
 
 
