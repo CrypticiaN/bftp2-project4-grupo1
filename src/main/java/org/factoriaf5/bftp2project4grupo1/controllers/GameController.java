@@ -20,7 +20,7 @@ public class GameController {
         this.gameRepository = gameRepository;
     }
     @GetMapping("/")
-    String listGames(Model model, @RequestParam(required = false) String category, String pegi, Double price, Double priceWithDiscount) {
+    String listGames(Model model, @RequestParam(required = false) String category, String pegi) {
 
         List<Game> games;
 
@@ -80,7 +80,7 @@ public class GameController {
     }
 
     @GetMapping("/games/add/{id}")
-    String editBook(Model model, @PathVariable Long id){
+    String editGame(Model model, @PathVariable Long id){
         Game game = gameRepository.findById(id).get();
         model.addAttribute("game", game);
         model.addAttribute("title", "Edit game");

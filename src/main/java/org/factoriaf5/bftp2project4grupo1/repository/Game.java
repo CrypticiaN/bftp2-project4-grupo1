@@ -2,7 +2,6 @@ package org.factoriaf5.bftp2project4grupo1.repository;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.math.RoundingMode;
 import java.util.Objects;
 
     @Entity
@@ -17,6 +16,7 @@ import java.util.Objects;
         private String imageUrl;
         private String category;
         private Double price;
+        private int discount;
         private Double priceWithDiscount;
         private String pegi;
         private String contentDescriptor;
@@ -25,14 +25,14 @@ import java.util.Objects;
 
         }
 
-        public Game(String title, String platform, int year, String imageUrl, String category, Double price, Double priceWithDiscount, String pegi, String contentDescriptor) {
-            this.id = id;
+        public Game(String title, String platform, int year, String imageUrl, String category, Double price, int discount, Double priceWithDiscount, String pegi, String contentDescriptor) {
             this.title = title;
             this.platform = platform;
             this.year = year;
             this.imageUrl = imageUrl;
             this.category = category;
             this.price = price;
+            this.discount = discount;
             this.priceWithDiscount = priceWithDiscount;
             this.pegi = pegi;
             this.contentDescriptor = contentDescriptor;
@@ -96,8 +96,16 @@ import java.util.Objects;
         }
 
 
+        public int getDiscount() {
+            return discount;
+        }
+
+        public void setDiscount(int discount) {
+            this.discount = discount;
+        }
+
         public  Double getPriceWithDiscount() {
-            Double discountedPrice = (price) - (price * 10/100);
+            Double discountedPrice = (price) - (price *  discount/100);
             Double d = Double.parseDouble(String.format("%.2f", discountedPrice));
             return d;
 
@@ -147,12 +155,12 @@ import java.util.Objects;
                     '}';
         }
 
-        public boolean isDiscount() {
-            return priceWithDiscount<price;
+        public boolean isDiscounted() {
+            return getPriceWithDiscount() < price;
         }
 
-        public int Discount() {
-            return (int) ((priceWithDiscount) / price *100);
+        public int discount() {
+            return (int) ((priceWithDiscount) / price * 100);
         }
     }
 

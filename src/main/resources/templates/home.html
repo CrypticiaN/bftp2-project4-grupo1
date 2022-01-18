@@ -25,14 +25,14 @@
                       class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"></span>
                 <span th:text="${game.category}"
                       class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"></span>
-                <span id= "price" th:text="${game.price}" th:classappend="${game.isDiscount()? 'linethrough':''}"
+                <span id= "price" th:text="${game.price}" th:classappend="${game.discounted? 'linethrough':''}"
                       class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
                 </span>
 
                 <span id="discount"
                       class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
                 </span>
-                <span id="priceWithDiscount" th:text="${game.priceWithDiscount}" th:if="${game.isDiscount()}"
+                <span id="priceWithDiscount" th:text="${game.priceWithDiscount}" th:if="${game.discounted}"
                       class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
                 </span>
 

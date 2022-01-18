@@ -16,6 +16,7 @@ import java.util.Optional;
 import static org.hamcrest.CoreMatchers.allOf;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -42,7 +43,7 @@ class ApplicationTests {
     @WithMockUser
     void returnsTheExistingGames() throws Exception {
 
-        Game game = gameRepository.save(new Game("Wii Sports", "Wii", 2006, "https://static.wikia.nocookie.net/videojuego/images/9/98/WiiSport_BA-1-.jpg/revision/latest/top-crop/width/360/height/450?cb=20070629185312", "Sci-fi", 19.99,19.99, "7", ""));
+        Game game = gameRepository.save(new Game("Wii Sports", "Wii", 2006, "https://static.wikia.nocookie.net/videojuego/images/9/98/WiiSport_BA-1-.jpg/revision/latest/top-crop/width/360/height/450?cb=20070629185312", "Sci-fi", 19.99, 0, 19.99, "7", ""));
 
         mockMvc.perform(get("/"))
                 .andExpect(status().isOk())
@@ -74,6 +75,7 @@ class ApplicationTests {
                         .param("platform", "J.K. Rowling")
                         .param("year", "2006")
                         .param("imageUrl", "google.com")
+                        .with(csrf())
                 )
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/"))
@@ -91,7 +93,7 @@ class ApplicationTests {
     @Test
     @WithMockUser
     void returnsAFormToEditGames() throws Exception {
-        Game game = gameRepository.save(new Game("Harry Potter and the Philosopher's Stone", "J.K. Rowling", 2006, "www.google.es", "Action", 19.99,19.99, "7", "suitable for all ages"));
+        Game game = gameRepository.save(new Game("Harry Potter and the Philosopher's Stone", "J.K. Rowling", 2006, "www.google.es", "Action", 19.99, 0, 19.99, "7", "suitable for all ages"));
         mockMvc.perform(get("/games/add/" + game.getId()))
                 .andExpect(status().isOk())
                 .andExpect(view().name("/add"))
@@ -102,7 +104,7 @@ class ApplicationTests {
     @Test
     @WithMockUser
     void allowsToDeleteAGame() throws Exception {
-        Game game = gameRepository.save(new Game("Harry Potter and the Philosopher's Stone", "J.K. Rowling", 2006, "www.google.es", "Sci-fi", 19.99,19.99, "12", "non realistic violence"));
+        Game game = gameRepository.save(new Game("Harry Potter and the Philosopher's Stone", "J.K. Rowling", 2006, "www.google.es", "Sci-fi", 19.99, 0, 19.99, "12", "non realistic violence"));
         mockMvc.perform(get("/games/delete/" + game.getId()))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/"));
@@ -114,8 +116,8 @@ class ApplicationTests {
     @WithMockUser
     void returnsGamesFromAGivenCategory() throws Exception {
 
-        Game fantasyGame = gameRepository.save(new Game("Super Mario", "GB", 1997, "https://www.lavanguardia.com/files/image_449_220/uploads/2020/09/12/5faa727a54ec2.png", "fantasy", 19.99,19.99, "3", "suitable for kids"));
-        Game softwareGame = gameRepository.save(new Game("Wii Sports", "X360", 2002, "https://www.lavanguardia.com/files/image_449_220/uploads/2020/09/12/5faa727a54ec2.png", "Sci-fi", 19.99,19.99,"12", "non realistic violence"));
+        Game fantasyGame = gameRepository.save(new Game("Super Mario", "GB", 1997, "https://www.lavanguardia.com/files/image_449_220/uploads/2020/09/12/5faa727a54ec2.png", "fantasy", 19.99, 0, 19.99, "3", "suitable for kids"));
+        Game softwareGame = gameRepository.save(new Game("Wii Sports", "X360", 2002, "https://www.lavanguardia.com/files/image_449_220/uploads/2020/09/12/5faa727a54ec2.png", "Sci-fi", 19.99, 0, 19.99,"12", "non realistic violence"));
 
         mockMvc.perform(get("/?category=fantasy"))
                 .andExpect(status().isOk())
@@ -128,7 +130,7 @@ class ApplicationTests {
     @WithMockUser
     void returnsGamesFromAGivenTitle() throws Exception {
 
-        Game nameTitle = gameRepository.save(new Game("Super Mario", "GB", 1997, "https://www.lavanguardia.com/files/image_449_220/uploads/2020/09/12/5faa727a54ec2.png", "fantasy", 19.99,19.99, "7", "suitable for all ages"));
+        Game nameTitle = gameRepository.save(new Game("Super Mario", "GB", 1997, "https://www.lavanguardia.com/files/image_449_220/uploads/2020/09/12/5faa727a54ec2.png", "fantasy", 19.99, 0, 19.99, "7", "suitable for all ages"));
 
         mockMvc.perform(get("/?title=Super Mario"))
                 .andExpect(status().isOk())
@@ -140,7 +142,7 @@ class ApplicationTests {
     @WithMockUser
     void returnsGamesFromAGivenPegi() throws Exception {
 
-        Game contentDescriptor = gameRepository.save(new Game("Super Mario", "GB", 1997, "https://www.lavanguardia.com/files/image_449_220/uploads/2020/09/12/5faa727a54ec2.png", "fantasy", 19.99,19.99, "7", ""));
+        Game contentDescriptor = gameRepository.save(new Game("Super Mario", "GB", 1997, "https://www.lavanguardia.com/files/image_449_220/uploads/2020/09/12/5faa727a54ec2.png", "fantasy", 19.99,0, 19.99, "7", ""));
 
         mockMvc.perform(get("/?pegi=7"))
                 .andExpect(status().isOk())
@@ -154,7 +156,7 @@ class ApplicationTests {
 
         Game game = gameRepository.save(new Game("Sims", "GB", 1997,
                 "https://www.lavanguardia.com/files/image_449_220/uploads/2020/09/12/5faa727a54ec2.png",
-                "fantasy", 14.99, 14.99, "7", ""));
+                "fantasy", 14.99,0, 14.99, "7", ""));
 
         mockMvc.perform(get("/"))
                 .andExpect(status().isOk())
