@@ -29,7 +29,7 @@
                       class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
                 </span>
 
-                <span id="discount"
+                <span id="discount" th:text="${game.discount}" th:if="${game.discounted}"
                       class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
                 </span>
                 <span id="priceWithDiscount" th:text="${game.priceWithDiscount}" th:if="${game.discounted}"
