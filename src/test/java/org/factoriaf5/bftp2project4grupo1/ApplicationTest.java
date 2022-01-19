@@ -178,6 +178,17 @@ class ApplicationTests {
 
     }
 
+    @Test
+    void anonymousUsersCannotCreateAGame() throws Exception {
+        mockMvc.perform(post("/")
+                        .param("title", "Super Mario")
+                        .param("platform", "NES")
+                        .param("category", "Fantasy")
+                        .with(csrf()))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("http://localhost:8080/login"));
+    }
+
 
 
 }

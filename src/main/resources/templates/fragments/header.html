@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
+
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-<header>
+<header xmlns:sec="http://www.thymeleaf.org/extras/spring-security"></header>
     <nav class="flex items-center justify-between flex-wrap bg-neutral-900 " style="background: -webkit-linear-gradient(top, rgb(239, 118, 30) 7%, rgb(248, 73, 36) 50%, rgb(252, 55, 39) 100%);
 background: -o-linear-gradient(top, rgb(239, 118, 30) 7%, rgb(248, 73, 36) 50%, rgb(252, 55, 39) 100%);
 background: -ms-linear-gradient(top, rgb(239, 118, 30) 7%, rgb(248, 73, 36) 50%, rgb(252, 55, 39) 100%);
@@ -53,12 +54,13 @@ background: linear-gradient(to bottom, rgb(239, 118, 30) 7%, rgb(248, 73, 36) 50
             <div class="w-full block flex flex-column lg:flex lg:items-center lg:w-auto">
         <div class="flex flex-end">
             <button type="submit">
-                <a class="bg-transparent block mt-4 lg:inline-block lg:mt-0 text-xl text-neutral-50 font-bold  mr-4" href="/add">Add</a>
-                <a href="/login" style=" :hover{color: #FC3727};" class="inline-block text-xl px-4 py-2 leading-none border rounded text-white font-bold border-white hover:border-transparent hover:font-bold hover:bg-white mt-4 lg:mt-0">Login</a>
+                <a class="bg-transparent block mt-4 lg:inline-block lg:mt-0 text-xl text-neutral-50 font-bold  mr-4" href="/add" sec:authorize="isAuthenticated()">Add</a>
+                <a href="/login" style=" :hover{color: #FC3727};" sec:authorize="isAnonymous()" class="inline-block text-xl px-4 py-2 leading-none border rounded text-white font-bold border-white hover:border-transparent hover:font-bold hover:bg-white mt-4 lg:mt-0">Login</a>
+                <a href="/logout" style=" :hover{color: #FC3727};" sec:authorize="isAuthenticated()" class="inline-block text-xl px-4 py-2 leading-none border rounded text-white font-bold border-white hover:border-transparent hover:font-bold hover:bg-white mt-4 lg:mt-0">Logout</a>
+
             </button>
         </div>
             </div>
     </nav>
-</header>
 </body>
 </html>

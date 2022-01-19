@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 
 <head th:replace="fragments/head"></head>
 <body>
 
-<header th:replace="fragments/header"></header>
+<header th:replace="fragments/header" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+</header>
 <section class="container m-2 mx-auto">
     <h2 class="font-semibold ml-4 text-4xl m-3 text-neutral-900 border-neutral-900 tracking-tight"
         th:text="${title}"></h2>
@@ -42,9 +43,9 @@
               </div> -->
             <div class="card-body">
                 <a class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-white-700 rounded content-center"
-                   th:href="'/games/add/'+${game.id}">Edit</a>
+                    th:href="'/games/add/'+${game.id}" sec:authorize="isAuthenticated()">Edit</a>
                 <a class="inline-block bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 border border-white-700 rounded content-center"
-                   th:href="'/games/delete/'+${game.id}">Delete</a>
+                   th:href="'/games/delete/'+${game.id}"sec:authorize="isAuthenticated()">Delete</a>
             </div>
         </div>
     </div>
