@@ -12,8 +12,9 @@
         th:text="${title}"></h2>
 
     <div class="grid grid-cols-4 gap-3 mb-20 object-top place-items-center">
-        <div th:each="game: ${games}" class="max-w-sm max-h-sm rounded overflow-hidden shadow-lg tarjeta">
-            <img class="w-full" th:src="${game.imageUrl}">
+        <div th:each="game: ${games}" class="max-w-sm max-h-sm rounded overflow-hidden tarjeta">
+            <div class="img">
+            <img class="w-full" th:src="${game.imageUrl}"></div>
             <div class="px-6 py-4">
                   <span id= "price" th:text="${game.price} + '€'" th:classappend="${game.discounted? 'linethrough':''}"
                         class="inline-block bg-yellow-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
@@ -41,10 +42,10 @@
             <!--  <div class="px-6 pt-4 pb-2">
                   <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#winter</span>
               </div> -->
-            <div class="card-body">
-                <a class="inline-block bg-emerald-800 hover:bg-emerald-300 text-white font-bold py-2 px-4  rounded content-center"
+            <div class="card-body text-center pb-5">
+                <a class="inline-block bg-emerald-800 hover:bg-emerald-300 text-white font-bold py-2 px-4 w-20 rounded content-center"
                     th:href="'/games/add/'+${game.id}" sec:authorize="isAuthenticated()">Edit</a>
-                <a class="inline-block bg-rose-700 hover:bg-rose-400 text-white font-bold py-2 px-4  rounded content-center"
+                <a class="inline-block bg-rose-700 hover:bg-rose-400 text-white font-bold py-2 px-4 w-20 rounded content-center"
                    th:href="'/games/delete/'+${game.id}"sec:authorize="isAuthenticated()">Delete</a>
             </div>
         </div>
