@@ -25,7 +25,8 @@ public class SampleDataLoader {
                 new Game("Wii Sports Resort", "Wii", 2009, "https://m.media-amazon.com/images/I/51o5CRXYcXL._AC_.jpg", "Fantasy", 9.99, 0, 9.99, "7","suitable for all ages"),
                 new Game("Pokemon Red/Pokemon Blue", "GB", 1996, "https://www.gamulator.com/img/roms/pokemon-red-blue-2-in-1-gb-cover-340x483.jpg", "Fantasy", 29.99, 0, 29.99, "12", "non realistic violence"),
                 new Game("Nintendogs", "DS", 2005, "https://www.gamulator.com/img/roms/nintendogs-dalmatian-friends-cover-nds-eu-340x483.jpg", "Sports", 29.99, 0, 29.99, "3", "suitable for kids"),
-                new Game("Grand Theft Auto:San Andreas ", "PS2", 2004, "https://i.3djuegos.com/juegos/1012/grand_theft_auto_san_andreas/fotos/ficha/grand_theft_auto_san_andreas-3785649.jpg", "Sci-fi", 24.99, 10, 22.49, "18", "extreme violence")
+                new Game("Grand Theft Auto:San Andreas ", "PS2", 2004, "https://i.3djuegos.com/juegos/1012/grand_theft_auto_san_andreas/fotos/ficha/grand_theft_auto_san_andreas-3785649.jpg", "Sci-fi", 24.99, 10, 22.49, "18", "extreme violence"),
+                new Game("Limbo ", "PS4", 2002, "https://cdn.hobbyconsolas.com/sites/navi.axelspringer.es/public/styles/1200/public/media/image/2016/08/caratula-limbo.jpg?itok=tDxHM46K", "Sci-fi", 20.99, 10, 0, "18", "extreme violence")
 
         ));
     }

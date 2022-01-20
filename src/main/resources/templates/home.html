@@ -11,8 +11,8 @@
     <h2 class="font-semibold ml-4 text-4xl m-3 text-neutral-900 border-neutral-900 tracking-tight"
         th:text="${title}"></h2>
 
-    <div class="grid grid-cols-3 gap-7 mb-20 md:justify-center">
-        <div th:each="game: ${games}" class="max-w-sm rounded overflow-hidden shadow-lg">
+    <div class="grid grid-cols-4 gap-3 mb-20 object-top place-items-center">
+        <div th:each="game: ${games}" class="max-w-sm max-h-sm rounded overflow-hidden shadow-lg tarjeta">
             <img class="w-full" th:src="${game.imageUrl}">
             <div class="px-6 py-4">
                 <div class="font-bold text-xl mb-2">
