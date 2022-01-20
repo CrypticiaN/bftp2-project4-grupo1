@@ -13,9 +13,9 @@
 
     <div class="grid grid-cols-4 gap-3 mb-20 object-top place-items-center">
         <div th:each="game: ${games}" class="max-w-sm max-h-sm rounded overflow-hidden tarjeta">
-            <div class="img">
-            <img class="w-full" th:src="${game.imageUrl}"></div>
-            <div class="px-6 py-4">
+            <div class="img-container">
+            <img class="w-full game-picture" th:src="${game.imageUrl}"></div>
+            <div class="px-6 py-6">
                   <span id= "price" th:text="${game.price} + '€'" th:classappend="${game.discounted? 'linethrough':''}"
                         class="inline-block bg-yellow-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
                 </span>
@@ -29,23 +29,23 @@
                 <div class="font-bold text-xl mb-2">
                     <h5 th:text="${game.title}"></h5>
                 </div>
-                <p th:text="${game.platform}" class="text-gray-700 text-base">
-                </p>
-                <p th:text="${game.year}" class="text-gray-700 text-base">
-                </p>
-                <span th:text="${game.contentDescriptor}"
-                      class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"></span>
-                <span th:text="${game.category}"
-                      class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"></span>
+                <div class="platf-year">
+                    <p th:text="${game.platform}" class="text-gray-700 text-base"></p>
+                    <p th:text="${game.year}" class="text-gray-700 text-base"></p>
+                </div>
+                <div class="cat-y-pegi">
+                    <span th:text="${game.contentDescriptor}" class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"></span>
+                    <span th:text="${game.category}" class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"></span>
+                </div>
 
             </div>
             <!--  <div class="px-6 pt-4 pb-2">
                   <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#winter</span>
               </div> -->
             <div class="card-body text-center pb-5">
-                <a class="inline-block bg-emerald-800 hover:bg-emerald-300 text-white font-bold py-2 px-4 w-20 rounded content-center"
+                <a class=" bg-emerald-800 hover:bg-emerald-300 text-white font-bold py-2 px-4 w-20 rounded content-center"
                     th:href="'/games/add/'+${game.id}" sec:authorize="isAuthenticated()">Edit</a>
-                <a class="inline-block bg-rose-700 hover:bg-rose-400 text-white font-bold py-2 px-4 w-20 rounded content-center"
+                <a class="bg-rose-700 hover:bg-rose-400 text-white font-bold py-2 px-4 w-20 rounded content-center"
                    th:href="'/games/delete/'+${game.id}"sec:authorize="isAuthenticated()">Delete</a>
             </div>
         </div>
