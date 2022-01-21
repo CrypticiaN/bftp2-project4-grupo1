@@ -13,12 +13,13 @@ import java.util.List;
 @Controller
 public class GameController {
 
-    private  GameRepository gameRepository;
+    private GameRepository gameRepository;
 
     @Autowired
     public GameController(GameRepository gameRepository) {
         this.gameRepository = gameRepository;
     }
+
     @GetMapping("/")
     String listGames(Model model, @RequestParam(required = false) String category, String pegi) {
 
@@ -27,38 +28,13 @@ public class GameController {
         if (category != null) {
             games = gameRepository.findGamesByCategoryEquals(category);
             model.addAttribute("title", "Games from category " + category);
-        }
-
-        else if (pegi != null) {
+        } else if (pegi != null) {
             games = gameRepository.findGamesByPegiEquals(pegi);
             model.addAttribute("title", "Games from pegi " + pegi);
-
-            String pegi2 = "";
-            String contentDescriptor;
-            switch (pegi2)
-            {
-                case "3":  contentDescriptor = "suitable for kids";
-                    break;
-                case "7":  contentDescriptor = "suitable for all ages";
-                    break;
-                case "12":  contentDescriptor = "non-realistic violence";
-                    break;
-                case "16": contentDescriptor = "realistic violence";
-                    break;
-                case "18": contentDescriptor = "extreme violence";
-                    break;
-                default: contentDescriptor = "no tiene ninguna descripción";
-                    break;
-            }
-            System.out.println(contentDescriptor);
+        } else {
+            games = gameRepository.findAll();
+            model.addAttribute("title", "Game List");
         }
-
-
-
-            else {
-                games = gameRepository.findAll();
-                model.addAttribute("title", "Game List");
-            }
 
 
         model.addAttribute("games", games);
@@ -66,7 +42,7 @@ public class GameController {
     }
 
     @GetMapping("/add")
-    String getForm(Model model){
+    String getForm(Model model) {
         Game game = new Game();
         model.addAttribute("game", game);
         model.addAttribute("title", "Add a new game");
@@ -80,7 +56,7 @@ public class GameController {
     }
 
     @GetMapping("/games/add/{id}")
-    String editGame(Model model, @PathVariable Long id){
+    String editGame(Model model, @PathVariable Long id) {
         Game game = gameRepository.findById(id).get();
         model.addAttribute("game", game);
         model.addAttribute("title", "Edit game");
@@ -88,7 +64,7 @@ public class GameController {
     }
 
     @GetMapping("/games/delete/{id}")
-    String deleteGame(@PathVariable Long id){
+    String deleteGame(@PathVariable Long id) {
         gameRepository.deleteById(id);
         return "redirect:/";
     }
