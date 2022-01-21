@@ -4,7 +4,6 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.text.DecimalFormat;
 import java.util.Objects;
 
     @Entity
@@ -22,13 +21,13 @@ import java.util.Objects;
         private int discount;
         private double priceWithDiscount;
         private String pegi;
-        private String contentDescriptor;
+
 
         public Game() {
 
         }
 
-        public Game(String title, String platform, int year, String imageUrl, String category, double price, int discount, double priceWithDiscount, String pegi, String contentDescriptor) {
+        public Game(String title, String platform, int year, String imageUrl, String category, double price, int discount, double priceWithDiscount, String pegi) {
             this.title = title;
             this.platform = platform;
             this.year = year;
@@ -38,16 +37,35 @@ import java.util.Objects;
             this.discount = discount;
             this.priceWithDiscount = priceWithDiscount;
             this.pegi = pegi;
-            this.contentDescriptor = contentDescriptor;
+
         }
 
         public String getContentDescriptor() {
+            String contentDescriptor;
+            switch (pegi) {
+                case "3":
+                    contentDescriptor = "suitable for kids";
+                    break;
+                case "7":
+                    contentDescriptor = "suitable for all ages";
+                    break;
+                case "12":
+                    contentDescriptor = "non-realistic violence";
+                    break;
+                case "16":
+                    contentDescriptor = "realistic violence";
+                    break;
+                case "18":
+                    contentDescriptor = "extreme violence";
+                    break;
+                default:
+                    contentDescriptor = "no tiene ninguna descripción";
+                    break;
+            }
             return contentDescriptor;
         }
 
-        public void setContentDescriptor(String contentDescriptor) {
-            this.contentDescriptor = contentDescriptor;
-        }
+
 
         public Long getId() {
             return id;
@@ -59,6 +77,14 @@ import java.util.Objects;
 
         public String getPegi() {
             return pegi;
+        }
+
+        public void setCategory(String category) {
+            this.category = category;
+        }
+
+        public void setPegi(String pegi) {
+            this.pegi = pegi;
         }
 
         public void setId(Long id) {
@@ -93,6 +119,7 @@ import java.util.Objects;
         public  double getPrice() {
             return price;
         }
+
 
         public void setPrice( double price) {
             this.price = price;
@@ -152,7 +179,6 @@ import java.util.Objects;
                     ", price=" + price +
                     ", priceWithDiscount=" + priceWithDiscount +
                     ", pegi='" + pegi + '\'' +
-                    ", contentDescriptor='" + contentDescriptor + '\'' +
                     '}';
         }
 

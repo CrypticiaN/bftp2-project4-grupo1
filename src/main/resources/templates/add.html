@@ -44,7 +44,8 @@
                             <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"></path>
                         </svg>
                     </div>
-                </div><div class="inline-block relative w-full">
+                </div>
+                <div class="inline-block relative w-full">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="category">
                         Category
                     </label>
@@ -65,12 +66,12 @@
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="pegi2">
                         Pegi
                     </label>
-                    <select th:field="*{contentDescriptor}" id="pegi2" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                    <select th:field="*{pegi}" id="pegi2" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
                         <option th:value="${game.pegi}"></option>
                         <option th:value="3">Pegi-3</option>
                         <option th:value="7">Pegi-7</option>
                         <option th:value="12">Pegi-12</option>
-                        <option th:value="15">Pegi-15</option>
+                        <option th:value="16">Pegi-16</option>
                         <option th:value="18">Pegi-18</option>
 
                     </select>
@@ -80,30 +81,24 @@
                         </svg>
                     </div>
                 </div>
-
-
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="year">
                     Year
                 </label>
                 <input required th:field="*{year}" type="text"
                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                       id="year"
-                       placeholder="Enter year">
+                       id="year" placeholder="Enter year">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="price">
                     Price
                 </label>
                 <input required th:field="*{price}" type="text"
                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                       id="price"
-                       placeholder="Enter price">
-
+                       id="price" placeholder="Enter price">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="discount">
                     Discount
                 </label>
                 <input required th:field="*{discount}" type="text"
                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                       id="discount"
-                       placeholder="Enter discount">
+                       id="discount" placeholder="Enter discount">
             </div>
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="imageUrl">
