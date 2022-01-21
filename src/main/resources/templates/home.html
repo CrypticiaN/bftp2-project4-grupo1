@@ -14,15 +14,17 @@
     <div class="grid grid-cols-4 gap-3 mb-20 object-top place-items-center">
         <div th:each="game: ${games}" class="max-w-sm max-h-sm rounded overflow-hidden tarjeta">
             <div class="img-container">
-            <img class="w-full game-picture" th:src="${game.imageUrl}"></div>
-            <div class="px-2.5 py-3.5">
+                <span id="discount" th:text="${game.discount} + '% Off' " th:if="${game.discounted}"
+                      class="inline-block bg-yellow-400 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                </span>
+                <img class="w-full game-picture" th:src="${game.imageUrl}">
+            </div>
+            <div class="px-2.5 py-3.5 price">
                   <span id= "price" th:text="${game.price} + '€'" th:classappend="${game.discounted? 'linethrough':''}"
                         class="inline-block bg-yellow-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
                 </span>
 
-                <span id="discount" th:text="${game.discount} + '% Off' " th:if="${game.discounted}"
-                      class="inline-block bg-yellow-400 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                </span>
+
                 <span id="priceWithDiscount" th:text="${game.priceWithDiscount} + '€'" th:if="${game.discounted}"
                       class="inline-block bg-orange-400 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
                 </span>
@@ -30,8 +32,8 @@
                     <h5 th:text="${game.title}"></h5>
                 </div>
                 <div class="platf-year">
-                    <p th:text="${game.platform}" class="text-gray-700 text-base"></p>
-                    <p th:text="${game.year}" class="text-gray-700 text-base"></p>
+                    <p th:text="${'Platform: '} + ${game.platform}" class="text-gray-700 text-base"></p>
+                    <p th:text="${'Year: ' + game.year}" class="text-gray-700 text-base"></p>
                 </div>
                 <div class="cat-y-pegi">
                     <span th:text="${game.contentDescriptor}" class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"></span>

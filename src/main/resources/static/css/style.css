@@ -18,7 +18,16 @@
     width: 150px;
     height: 200px;
     margin: 0 auto;
+    position: relative;
 }
+
+#discount {
+    position: absolute;
+    right: -3.5rem;
+    top: 3%;
+    background-color: rgba(250,204,21, 0.80)
+}
+
 
 .game-picture {
     max-width: 150px;
