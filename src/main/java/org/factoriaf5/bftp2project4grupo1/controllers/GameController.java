@@ -43,7 +43,7 @@ public class GameController {
                     break;
                 case "12":  contentDescriptor = "non-realistic violence";
                     break;
-                case "15": contentDescriptor = "realistic violence";
+                case "16": contentDescriptor = "realistic violence";
                     break;
                 case "18": contentDescriptor = "extreme violence";
                     break;
