@@ -13,13 +13,28 @@
 
     <div class="grid grid-cols-4 gap-3 mb-20 object-top place-items-center">
         <div th:each="game: ${games}" class="max-w-sm max-h-sm rounded overflow-hidden tarjeta">
+           <div sec:authorize="isAuthenticated()">
             <div class="img-container">
 
                 <span th:text="${game.discount} + '% Off' " th:if="${game.discounted}"
                       class="inline-block bg-yellow-400 discount shadow-sm rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
                 </span>
-                <img class="w-full game-picture" z-0 th:src="${game.imageUrl}">
+                <img class="w-full game-picture z-0"  th:src="${game.imageUrl}">
             </div>
+           </div>
+
+            <div sec:authorize="isAnonymous()">
+            <div class="img-container ">
+
+                <span th:text="${game.discount} + '% Off' " th:if="${game.discounted}"
+                      class="inline-block bg-yellow-400 discount shadow-sm rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                </span>
+                <img class="w-full game-picture mt-9 "  th:src="${game.imageUrl}">
+            </div>
+            </div>
+
+
+
             <div class="px-2.5 py-3.5 price">
                   <span id= "price" th:text="${game.price} + '€'" th:classappend="${game.discounted? 'linethrough':''}"
                         class="inline-block bg-yellow-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
@@ -57,10 +72,9 @@
 
 
 
+
+
             </div>
-            <!--  <div class="px-6 pt-4 pb-2">
-                  <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#winter</span>
-              </div> -->
 
         </div>
     </div>
