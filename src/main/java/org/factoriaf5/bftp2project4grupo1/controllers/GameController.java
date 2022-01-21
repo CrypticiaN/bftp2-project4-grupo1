@@ -27,13 +27,13 @@ public class GameController {
 
         if (category != null) {
             games = gameRepository.findGamesByCategoryEquals(category);
-            model.addAttribute("title", "Games from category " + category);
+            model.addAttribute("title", "Games from Category " + category);
         } else if (pegi != null) {
             games = gameRepository.findGamesByPegiEquals(pegi);
-            model.addAttribute("title", "Games from pegi " + pegi);
+            model.addAttribute("title", "Games from Pegi " + pegi);
         } else {
             games = gameRepository.findAll();
-            model.addAttribute("title", "Game List");
+            model.addAttribute("title", "Games Catalog");
         }
 
 
