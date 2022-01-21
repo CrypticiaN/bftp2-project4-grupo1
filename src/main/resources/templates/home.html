@@ -15,7 +15,7 @@
         <div th:each="game: ${games}" class="max-w-sm max-h-sm rounded overflow-hidden tarjeta">
             <div class="img-container">
                 <span id="discount" th:text="${game.discount} + '% Off' " th:if="${game.discounted}"
-                      class="inline-block bg-yellow-400 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                      class="inline-block bg-yellow-400 rounded-full px-3 py-1 text-base font-semibold text-gray-700 mr-2 mb-2">
                 </span>
                 <img class="w-full game-picture" th:src="${game.imageUrl}">
             </div>

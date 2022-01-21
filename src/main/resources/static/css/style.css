@@ -19,6 +19,7 @@
     height: 200px;
     margin: 0 auto;
     position: relative;
+    margin-top: 10px;
 }
 
 #discount {
