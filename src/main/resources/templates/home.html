@@ -15,7 +15,9 @@
         <div th:each="game: ${games}" class="max-w-sm max-h-sm rounded overflow-hidden tarjeta">
             <div class="img-container">
             <img class="w-full game-picture" th:src="${game.imageUrl}"></div>
+
             <div class="px-5 py-3.5">
+
                   <span id= "price" th:text="${game.price} + '€'" th:classappend="${game.discounted? 'linethrough':''}"
                         class="inline-block bg-yellow-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
                 </span>
@@ -43,9 +45,9 @@
                   <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#winter</span>
               </div> -->
             <div class="card-body text-center pb-5">
-                <a class=" bg-emerald-800 hover:bg-emerald-300 text-white font-bold py-2 px-4 w-20 rounded content-center"
+                <a class=" bg-emerald-800 hover:bg-emerald-300 text-white font-bold py-1 px-4 w-20 rounded content-center"
                     th:href="'/games/add/'+${game.id}" sec:authorize="isAuthenticated()">Edit</a>
-                <a class="bg-rose-700 hover:bg-rose-400 text-white font-bold py-2 px-4 w-20 rounded content-center"
+                <a class="bg-rose-700 hover:bg-rose-400 text-white font-bold py-1 px-4 w-20 rounded content-center"
                    th:href="'/games/delete/'+${game.id}"sec:authorize="isAuthenticated()">Delete</a>
             </div>
         </div>
