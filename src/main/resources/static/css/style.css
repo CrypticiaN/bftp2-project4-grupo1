@@ -21,11 +21,12 @@
     position: relative;
 }
 
-#discount {
+
+span.discount {
     position: absolute;
     right: -3.5rem;
     top: 3%;
-    background-color: rgba(250,204,21, 0.80)
+    background-color: rgba(250,204,21, 0.90)
 }
 
 
@@ -41,6 +42,11 @@
     justify-content: space-around;
 }
 
+.platform, .year {
+    display: flex;
+}
+
 .cat-y-pegi {
     margin-bottom: 10px;
+    margin-top: 5px;
 }
